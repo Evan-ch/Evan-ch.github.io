@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Oracle ADG主从同步 dataguard(windows to linux ) | Evan’s Blog</title>
+    <meta name="generator" content="VuePress 1.9.10">
+    
+    <meta name="description" content="That&#39;s the way the cookie crumbles.">
+    
+    <link rel="preload" href="/assets/css/0.styles.9f84806b.css" as="style"><link rel="preload" href="/assets/js/app.a4b0c6e4.js" as="script"><link rel="preload" href="/assets/js/2.6161d12c.js" as="script"><link rel="preload" href="/assets/js/1.2d3f8e6c.js" as="script"><link rel="preload" href="/assets/js/37.f1970d74.js" as="script"><link rel="prefetch" href="/assets/js/10.0a6d6c98.js"><link rel="prefetch" href="/assets/js/11.c3bdf5ac.js"><link rel="prefetch" href="/assets/js/12.5b150f54.js"><link rel="prefetch" href="/assets/js/13.7f1886f2.js"><link rel="prefetch" href="/assets/js/14.53acdaa0.js"><link rel="prefetch" href="/assets/js/15.686b9dcf.js"><link rel="prefetch" href="/assets/js/16.c90a8e74.js"><link rel="prefetch" href="/assets/js/17.c2dfa21f.js"><link rel="prefetch" href="/assets/js/18.a945c724.js"><link rel="prefetch" href="/assets/js/19.33e00b97.js"><link rel="prefetch" href="/assets/js/20.58b7fe5e.js"><link rel="prefetch" href="/assets/js/21.23d988ac.js"><link rel="prefetch" href="/assets/js/22.819abf2e.js"><link rel="prefetch" href="/assets/js/23.f0e91d1b.js"><link rel="prefetch" href="/assets/js/24.01eaa192.js"><link rel="prefetch" href="/assets/js/25.fe7d7470.js"><link rel="prefetch" href="/assets/js/26.c4d382a5.js"><link rel="prefetch" href="/assets/js/27.d74992d5.js"><link rel="prefetch" href="/assets/js/28.3ce48a01.js"><link rel="prefetch" href="/assets/js/29.966d3681.js"><link rel="prefetch" href="/assets/js/3.6d94311e.js"><link rel="prefetch" href="/assets/js/30.5357be84.js"><link rel="prefetch" href="/assets/js/31.316f74b3.js"><link rel="prefetch" href="/assets/js/32.4387c4b0.js"><link rel="prefetch" href="/assets/js/33.d8f4d45c.js"><link rel="prefetch" href="/assets/js/34.40ee1cc1.js"><link rel="prefetch" href="/assets/js/35.afd58027.js"><link rel="prefetch" href="/assets/js/36.962b25c8.js"><link rel="prefetch" href="/assets/js/38.1ab8a82a.js"><link rel="prefetch" href="/assets/js/39.9b2ada99.js"><link rel="prefetch" href="/assets/js/4.3604264c.js"><link rel="prefetch" href="/assets/js/40.d8d1c206.js"><link rel="prefetch" href="/assets/js/41.a3ee28ba.js"><link rel="prefetch" href="/assets/js/42.aa03f353.js"><link rel="prefetch" href="/assets/js/43.eec99560.js"><link rel="prefetch" href="/assets/js/44.444f4ea1.js"><link rel="prefetch" href="/assets/js/45.b8f2e7df.js"><link rel="prefetch" href="/assets/js/46.67e54de9.js"><link rel="prefetch" href="/assets/js/47.63db9a7b.js"><link rel="prefetch" href="/assets/js/48.e21565d1.js"><link rel="prefetch" href="/assets/js/49.757d5dd1.js"><link rel="prefetch" href="/assets/js/5.e2dd7423.js"><link rel="prefetch" href="/assets/js/50.8e0b035b.js"><link rel="prefetch" href="/assets/js/51.459db1fd.js"><link rel="prefetch" href="/assets/js/52.d7ef37bc.js"><link rel="prefetch" href="/assets/js/53.9cbf304c.js"><link rel="prefetch" href="/assets/js/54.481434ff.js"><link rel="prefetch" href="/assets/js/55.740cbc3b.js"><link rel="prefetch" href="/assets/js/56.3a73888f.js"><link rel="prefetch" href="/assets/js/57.17a8e274.js"><link rel="prefetch" href="/assets/js/58.6095c962.js"><link rel="prefetch" href="/assets/js/59.bc6eaad8.js"><link rel="prefetch" href="/assets/js/6.e7eb960e.js"><link rel="prefetch" href="/assets/js/60.7ceb136e.js"><link rel="prefetch" href="/assets/js/61.efcc096f.js"><link rel="prefetch" href="/assets/js/62.701c0dae.js"><link rel="prefetch" href="/assets/js/63.cbaf1eb1.js"><link rel="prefetch" href="/assets/js/64.c90fac3b.js"><link rel="prefetch" href="/assets/js/65.e83b3b1f.js"><link rel="prefetch" href="/assets/js/66.df234278.js"><link rel="prefetch" href="/assets/js/67.183026a5.js"><link rel="prefetch" href="/assets/js/68.c4f9334d.js"><link rel="prefetch" href="/assets/js/69.fffe24be.js"><link rel="prefetch" href="/assets/js/7.45ef9de6.js"><link rel="prefetch" href="/assets/js/70.414b8500.js"><link rel="prefetch" href="/assets/js/71.e758ce56.js"><link rel="prefetch" href="/assets/js/72.063742a7.js"><link rel="prefetch" href="/assets/js/73.d6400502.js"><link rel="prefetch" href="/assets/js/74.e82af296.js"><link rel="prefetch" href="/assets/js/75.0c778e32.js"><link rel="prefetch" href="/assets/js/76.e8b4d3b8.js"><link rel="prefetch" href="/assets/js/77.5d10c02a.js"><link rel="prefetch" href="/assets/js/78.c8eae285.js"><link rel="prefetch" href="/assets/js/79.6cbb92d5.js"><link rel="prefetch" href="/assets/js/80.31efac9a.js"><link rel="prefetch" href="/assets/js/81.e818cf23.js"><link rel="prefetch" href="/assets/js/82.0778db78.js"><link rel="prefetch" href="/assets/js/vendors~docsearch.cffcfb64.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.9f84806b.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="/logo.png" alt="Evan’s Blog" class="logo"> <span class="site-name can-hide">Evan’s Blog</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/evan/" class="nav-link">
+  关于我
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="DAMA数据治理学习笔记" class="dropdown-title"><span class="title">数据治理</span> <span class="arrow down"></span></button> <button type="button" aria-label="DAMA数据治理学习笔记" class="mobile-dropdown-title"><span class="title">数据治理</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/damadata/" class="nav-link">
+  DAMA数据治理学习笔记
+</a></li><li class="dropdown-item"><!----> <a href="/damadata/#damadata" class="nav-link">
+  数字化转型场景案例系列
+</a></li><li class="dropdown-item"><!----> <a href="/damadata/#damadata" class="nav-link">
+  成文数据集成平台落地场景系列
+</a></li><li class="dropdown-item"><!----> <a href="/damadata/#damadata" class="nav-link">
+  成文数字化解决方案
+</a></li><li class="dropdown-item"><!----> <a href="/damadata/#damadata" class="nav-link">
+  其他
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="记录学习心得、笔记" class="dropdown-title"><span class="title">BLOG</span> <span class="arrow down"></span></button> <button type="button" aria-label="记录学习心得、笔记" class="mobile-dropdown-title"><span class="title">BLOG</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/ai/" class="nav-link">
+  AI
+</a></li><li class="dropdown-item"><!----> <a href="/data/" class="nav-link">
+  大数据
+</a></li><li class="dropdown-item"><!----> <a href="/database/" class="nav-link router-link-active">
+  数据库
+</a></li><li class="dropdown-item"><!----> <a href="/wx/" class="nav-link">
+  微信开发
+</a></li><li class="dropdown-item"><!----> <a href="/sec/" class="nav-link">
+  安全
+</a></li><li class="dropdown-item"><!----> <a href="/linux/" class="nav-link">
+  Linux
+</a></li><li class="dropdown-item"><!----> <a href="/py/" class="nav-link">
+  Python
+</a></li><li class="dropdown-item"><!----> <a href="/PM/" class="nav-link">
+  项目管理
+</a></li><li class="dropdown-item"><!----> <a href="/qd/" class="nav-link">
+  前端框架
+</a></li><li class="dropdown-item"><!----> <a href="/java/" class="nav-link">
+  Java
+</a></li><li class="dropdown-item"><!----> <a href="/tool/" class="nav-link">
+  工具集
+</a></li><li class="dropdown-item"><!----> <a href="/sadoc/" class="nav-link">
+  运维文档
+</a></li><li class="dropdown-item"><!----> <a href="/kingdee/" class="nav-link">
+  金蝶
+</a></li><li class="dropdown-item"><!----> <a href="/yonyou/" class="nav-link">
+  用友
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="官网" class="dropdown-title"><span class="title">官网</span> <span class="arrow down"></span></button> <button type="button" aria-label="官网" class="mobile-dropdown-title"><span class="title">官网</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://www.chengwenit.com" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  公司官网
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://yao.chengwenit.com" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  医药大数据
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://cloud.chengwenit.com" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  云业务
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://pms.chengwenit.com" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  物业服务云
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://ji.chengwenit.com" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  数据集成平台
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/evan/" class="nav-link">
+  关于我
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="DAMA数据治理学习笔记" class="dropdown-title"><span class="title">数据治理</span> <span class="arrow down"></span></button> <button type="button" aria-label="DAMA数据治理学习笔记" class="mobile-dropdown-title"><span class="title">数据治理</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/damadata/" class="nav-link">
+  DAMA数据治理学习笔记
+</a></li><li class="dropdown-item"><!----> <a href="/damadata/#damadata" class="nav-link">
+  数字化转型场景案例系列
+</a></li><li class="dropdown-item"><!----> <a href="/damadata/#damadata" class="nav-link">
+  成文数据集成平台落地场景系列
+</a></li><li class="dropdown-item"><!----> <a href="/damadata/#damadata" class="nav-link">
+  成文数字化解决方案
+</a></li><li class="dropdown-item"><!----> <a href="/damadata/#damadata" class="nav-link">
+  其他
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="记录学习心得、笔记" class="dropdown-title"><span class="title">BLOG</span> <span class="arrow down"></span></button> <button type="button" aria-label="记录学习心得、笔记" class="mobile-dropdown-title"><span class="title">BLOG</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/ai/" class="nav-link">
+  AI
+</a></li><li class="dropdown-item"><!----> <a href="/data/" class="nav-link">
+  大数据
+</a></li><li class="dropdown-item"><!----> <a href="/database/" class="nav-link router-link-active">
+  数据库
+</a></li><li class="dropdown-item"><!----> <a href="/wx/" class="nav-link">
+  微信开发
+</a></li><li class="dropdown-item"><!----> <a href="/sec/" class="nav-link">
+  安全
+</a></li><li class="dropdown-item"><!----> <a href="/linux/" class="nav-link">
+  Linux
+</a></li><li class="dropdown-item"><!----> <a href="/py/" class="nav-link">
+  Python
+</a></li><li class="dropdown-item"><!----> <a href="/PM/" class="nav-link">
+  项目管理
+</a></li><li class="dropdown-item"><!----> <a href="/qd/" class="nav-link">
+  前端框架
+</a></li><li class="dropdown-item"><!----> <a href="/java/" class="nav-link">
+  Java
+</a></li><li class="dropdown-item"><!----> <a href="/tool/" class="nav-link">
+  工具集
+</a></li><li class="dropdown-item"><!----> <a href="/sadoc/" class="nav-link">
+  运维文档
+</a></li><li class="dropdown-item"><!----> <a href="/kingdee/" class="nav-link">
+  金蝶
+</a></li><li class="dropdown-item"><!----> <a href="/yonyou/" class="nav-link">
+  用友
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="官网" class="dropdown-title"><span class="title">官网</span> <span class="arrow down"></span></button> <button type="button" aria-label="官网" class="mobile-dropdown-title"><span class="title">官网</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://www.chengwenit.com" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  公司官网
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://yao.chengwenit.com" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  医药大数据
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://cloud.chengwenit.com" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  云业务
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://pms.chengwenit.com" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  物业服务云
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://ji.chengwenit.com" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  数据集成平台
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>oracle表空间相关操作</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Oracle中创建用户和授权</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Oracle查询锁表和解锁</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Oracle dblink应用</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Oracle循环语句参考示例</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Oracle job应用</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>SQLserver查询锁表和解锁</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Oracle截取字符串</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Oracle中exp,imp的使用详解</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>Oracle ADG主从同步 dataguard(windows to linux )</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/database/dbase-10.html" aria-current="page" class="active sidebar-link">Oracle ADG主从同步 dataguard(windows to linux )</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/database/dbase-10.html#前言" class="sidebar-link">前言</a></li><li class="sidebar-sub-header"><a href="/database/dbase-10.html#环境准备" class="sidebar-link">环境准备</a></li><li class="sidebar-sub-header"><a href="/database/dbase-10.html#这是要通信的备库ip-和端口-取名为-back-要连接的数据库名为-orcl" class="sidebar-link">这是要通信的备库IP 和端口，取名为 BACK，要连接的数据库名为 orcl</a></li></ul></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Oracle中创建unique唯一约束(单列和多列)</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Windows Oracle自动备份脚本</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Linxu Oracle自动备份脚本</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Oracle查找重复记录</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Oracle 汉字转换首字母函数</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Oracle创建自增序列触发器</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Oracle密码过期处理</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>## Oracle数据泵(impdp,expdp)导出导入</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Oracle常用正则表达式</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Oracle复制表</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Oracle 常用函数（待补充）</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>MySQL事件创建和修改（类似Oracle job）</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>oracle系统表v$session、v$sql 查看最近执行了哪些sql语句</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>安装MSDE停到最后几秒不动</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>ms sqlserver sa密码命令行修改</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>MSDE/sqlserver2000 安装挂起清除</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>mysql添加用户和指定IP授权和回收相关操作</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Linux下Oracle11G的job没有执行-last_date为空</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Centos6 安装Mysql</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Oracle创建同义词授权用户使用</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>win10安装MSDE</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Oracle企业版迁移标准版</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>用友U8 sqlserver数据库变可疑状态处理</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>SQLSERVER批量备份和恢复数据库</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Oracle本地自动备份脚本</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>mysql本地自动备份脚本</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>自动备份所有sqlserver数据库脚本</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Oralce删除前备份触发器应用</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="oracle-adg主从同步-dataguard-windows-to-linux"><a href="#oracle-adg主从同步-dataguard-windows-to-linux" class="header-anchor">#</a> Oracle ADG主从同步 dataguard(windows to linux )</h1> <h2 id="前言"><a href="#前言" class="header-anchor">#</a> 前言</h2> <blockquote><p>用户目前用的Windows两个Oracle实例500G左右的表空间大小。因性能和安全性方面的考虑，需要在目前基础上新增一个从库读写分离，分担分析报表和外部流向溯源系统、UDI、金税、监管接口等查询的性能压力，以及预防在主库异常(硬件故障/被攻击)时进行故障转移。
+从库选择Linux安装Oracle 11g.(相同版本、字符集),如果是出事搭建，推荐使用一致的操作系统版本和一致的表空间数据文件存储路径，搭建更简单。
+注意：主从同步不能替离线备份，因为基于日志归档的实时主从同步，在主库误操作无法回滚后，从库也实时做了同样的操作。此时部分数据还需要从离线备份中恢复。</p></blockquote> <h2 id="环境准备"><a href="#环境准备" class="header-anchor">#</a> 环境准备</h2> <ul><li>查询主库版本和字符集</li></ul> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token comment">-- 查询版本</span>
+<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> V$VERSION<span class="token punctuation">;</span>
+<span class="token comment">-- 查询字符集</span>
+<span class="token keyword">select</span> userenv<span class="token punctuation">(</span><span class="token string">'language'</span><span class="token punctuation">)</span> <span class="token keyword">from</span> dual<span class="token punctuation">;</span>
+<span class="token comment">--数据库名</span>
+<span class="token keyword">select</span> name <span class="token keyword">from</span> v$<span class="token keyword">database</span><span class="token punctuation">;</span>
+</code></pre></div><ul><li><p>安装从库，字符集/数据库名，版本一致 参考静默安装Oracle，仅安装数据库，参考</p></li> <li><p>主库和从库HOSTS增加解析</p></li></ul> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token number">10.11</span>.11.241  erpora0
+<span class="token number">10.11</span>.11.242  erpora1
+</code></pre></div><ul><li>linser和tns配置
+1.1 通信准备(监听和tns配置)
+%ORACLE_HOME%/NETWORK/ADMIN目录下
+listener.ora tnsnames.ora</li></ul> <h3 id="创建主库"><a href="#创建主库" class="header-anchor">#</a> 创建主库</h3> <p><strong>这是我主库的 ip和端口，主库取名为 MAIN，要连接的数据库名为 orcl：</strong></p> <div class="language-shell extra-class"><pre class="language-shell"><code>WINORA <span class="token operator">=</span>
+<span class="token punctuation">(</span>DESCRIPTION <span class="token operator">=</span>
+<span class="token punctuation">(</span>ADDRESS <span class="token operator">=</span> <span class="token punctuation">(</span>PROTOCOL <span class="token operator">=</span> TCP<span class="token punctuation">)</span><span class="token punctuation">(</span>HOST <span class="token operator">=</span> <span class="token number">10.11</span>.11.241<span class="token punctuation">)</span><span class="token punctuation">(</span>PORT <span class="token operator">=</span> <span class="token number">1521</span><span class="token punctuation">))</span>
+<span class="token punctuation">(</span>CONNECT_DATA <span class="token operator">=</span>
+  <span class="token punctuation">(</span>SERVER <span class="token operator">=</span> DEDICATED<span class="token punctuation">)</span>
+  <span class="token punctuation">(</span>SERVICE_NAME <span class="token operator">=</span> ERP<span class="token punctuation">)</span>
+<span class="token punctuation">)</span>
+<span class="token punctuation">)</span>
+</code></pre></div><h3 id="创建备库"><a href="#创建备库" class="header-anchor">#</a> 创建备库</h3> <h2 id="这是要通信的备库ip-和端口-取名为-back-要连接的数据库名为-orcl"><a href="#这是要通信的备库ip-和端口-取名为-back-要连接的数据库名为-orcl" class="header-anchor">#</a> 这是要通信的备库IP 和端口，取名为 BACK，要连接的数据库名为 orcl</h2> <div class="language-shell extra-class"><pre class="language-shell"><code>LINORA <span class="token operator">=</span>
+<span class="token punctuation">(</span>DESCRIPTION <span class="token operator">=</span>
+<span class="token punctuation">(</span>ADDRESS <span class="token operator">=</span> <span class="token punctuation">(</span>PROTOCOL <span class="token operator">=</span> TCP<span class="token punctuation">)</span><span class="token punctuation">(</span>HOST <span class="token operator">=</span> <span class="token number">192.168</span>.0.145<span class="token punctuation">)</span><span class="token punctuation">(</span>PORT <span class="token operator">=</span> <span class="token number">1521</span><span class="token punctuation">))</span>
+<span class="token punctuation">(</span>CONNECT_DATA <span class="token operator">=</span>
+  <span class="token punctuation">(</span>SERVER <span class="token operator">=</span> DEDICATED<span class="token punctuation">)</span>
+  <span class="token punctuation">(</span>SERVICE_NAME <span class="token operator">=</span> ERP<span class="token punctuation">)</span>
+<span class="token punctuation">)</span>
+<span class="token punctuation">)</span>
+</code></pre></div><ul><li>开启强制归档
+shutdown  immediate;
+startup mount;
+alter database force logging;
+alter database archivelog;</li></ul> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token keyword">alter</span> <span class="token keyword">database</span> <span class="token keyword">add</span> standby logfile <span class="token keyword">group</span> <span class="token number">4</span> <span class="token punctuation">(</span><span class="token string">'D:\ERPORA\standby_log04.log'</span><span class="token punctuation">)</span> size <span class="token number">50</span>M<span class="token punctuation">;</span>
+<span class="token keyword">alter</span> <span class="token keyword">database</span> <span class="token keyword">add</span> standby logfile <span class="token keyword">group</span> <span class="token number">5</span> <span class="token punctuation">(</span><span class="token string">'D:\ERPORA\standby_log05.log'</span><span class="token punctuation">)</span> size <span class="token number">50</span>M<span class="token punctuation">;</span>
+<span class="token keyword">alter</span> <span class="token keyword">database</span> <span class="token keyword">add</span> standby logfile <span class="token keyword">group</span> <span class="token number">6</span> <span class="token punctuation">(</span><span class="token string">'D:\ERPORA\standby_log06.log'</span><span class="token punctuation">)</span> size <span class="token number">50</span>M<span class="token punctuation">;</span>
+<span class="token keyword">alter</span> <span class="token keyword">database</span> <span class="token keyword">add</span> standby logfile <span class="token keyword">group</span> <span class="token number">7</span> <span class="token punctuation">(</span><span class="token string">'D:\ERPORA\standby_log07.log'</span><span class="token punctuation">)</span> size <span class="token number">50</span>M<span class="token punctuation">;</span>
+</code></pre></div><h3 id="主库参数配置"><a href="#主库参数配置" class="header-anchor">#</a> 主库参数配置</h3> <p>create pfile = 'D:\app\Administrator\pfile' from spfile;</p> <ul><li>.db_unique_name='ERPORA'</li> <li>.fal_client='ERPORA'</li> <li>.fal_server='ERPORAB'</li> <li>.log_archive_config='dg_config=(ERPORA,ERPORAB)'</li> <li>.log_archive_dest_1='location=D:\ARCHIVELOG valid_for=(all_logfiles,all_roles) db_unique_name=ERPORA'</li> <li>.log_archive_dest_2='service=ERPORAB lgwr async noaffirm  valid_for=(online_logfiles,primary_role) db_unique_name=ERPORAB'</li> <li>.log_archive_dest_state_1='enable'</li> <li>.log_archive_dest_state_2='enable'</li> <li>.log_archive_max_processes=4</li> <li>.db_file_name_convert='/db/app/oracle/oradata/ERPORA','D:\ERPORA'</li> <li>.log_file_name_convert='/db/app/oracle/oradata/ERPORA','D:\ERPORA'</li> <li>.standby_file_management='auto'</li></ul> <p>--启动主库</p> <p>shutdown immediate;
+startup mount pfile='D:\app\Administrator\pfile';</p> <p>--nomount启动备库</p> <p>startup nomount pfile='/db/app/oracle/oradata/pfile';</p> <p>--配置密码文件</p> <p>orapwd file=./orapwERPORA password=pass entries=2 force=y</p> <p>--测试密码</p> <p>sqlplus sys/pass@ERPORA as sysdba
+sqlplus sys/pass@ERPORAB as sysdba</p> <p>登录rman</p> <p>rman target sys/pass@ERPORA auxiliary sys/pass@ERPORAB</p> <p>开始复制
+duplicate target database for standby from active database nofilenamecheck;</p> <p>主备库分别创建spfile</p> <p>create spfile from pfile='D:\app\Administrator\pfile'; --主库
+create spfile from pfile='/db/app/oracle/oradata/pfile'; --备库</p> <ul><li>配置文件位置</li></ul> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token comment">--查询数据文件位置</span>
+<span class="token keyword">select</span> name <span class="token keyword">from</span> v$datafile<span class="token punctuation">;</span>
+<span class="token comment">-- 如果主库与备库数据文件位置不相同，则需要使用db_file_name_convert来转换。</span>
+<span class="token keyword">alter</span> system <span class="token keyword">set</span> db_file_name_convert<span class="token operator">=</span><span class="token string">'/data/oracle/oradata/chwit1'</span><span class="token punctuation">,</span><span class="token string">'C:\APP\ADMINISTRATOR\ORADATA\SFXT'</span> scope<span class="token operator">=</span>spfile<span class="token punctuation">;</span>
+<span class="token comment">--log_file_name_convert 查看在线日志文件的位置：</span>
+<span class="token keyword">select</span> member <span class="token keyword">from</span> v$logfile<span class="token punctuation">;</span>
+<span class="token comment">--如果主库与备库在线日志文件位置不相同，则需要使用log_file_name_convert来转换。</span>
+<span class="token keyword">alter</span> system <span class="token keyword">set</span> log_file_name_convert<span class="token operator">=</span><span class="token string">'/data/oracle/oradata/chwit1'</span><span class="token punctuation">,</span><span class="token string">'C:\APP\ADMINISTRATOR\ORADATA\SFXT'</span> scope<span class="token operator">=</span>spfile<span class="token punctuation">;</span>
+</code></pre></div><ul><li>配置 standby_file_management、fal_client、fal_server</li></ul> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token keyword">alter</span> system <span class="token keyword">set</span> standby_file_management<span class="token operator">=</span>auto scope<span class="token operator">=</span>spfile<span class="token punctuation">;</span>
+<span class="token keyword">alter</span> system <span class="token keyword">set</span> fal_client<span class="token operator">=</span><span class="token string">'tnssfx'</span> scope<span class="token operator">=</span>both<span class="token punctuation">;</span>
+<span class="token keyword">alter</span> system <span class="token keyword">set</span> fal_server<span class="token operator">=</span><span class="token string">'tnschwit1'</span> scope<span class="token operator">=</span>both<span class="token punctuation">;</span>
+</code></pre></div><ul><li>创建文件夹</li></ul> <div class="language-PowerShell extra-class"><pre class="language-powershell"><code>mkdir C:\app\Administrator\product\11<span class="token punctuation">.</span>2<span class="token punctuation">.</span>0\dbhome_1\archivelog
+</code></pre></div><ul><li>应用新参数文件</li></ul> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token comment">--一致性停库</span>
+<span class="token keyword">shutdown</span> immediate<span class="token punctuation">;</span> 
+<span class="token comment">--创建新的spfile</span>
+<span class="token keyword">create</span> spfile <span class="token keyword">from</span> pfile<span class="token punctuation">;</span> 
+startup<span class="token punctuation">;</span>
+</code></pre></div><ul><li>添加主库和备库的standby日志组</li></ul> <blockquote><p>standby日志组个数：配置为redo日志组个数+1，在主库与备库都添加standby日志组。主库可以不添加，如果考虑备库要切成主库就需要一起添加。</p></blockquote> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token comment">--只查询standby日志组：</span>
+<span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> v$standby_log <span class="token punctuation">;</span>
+<span class="token keyword">alter</span> <span class="token keyword">database</span> <span class="token keyword">add</span> standby logfile <span class="token keyword">group</span> <span class="token number">4</span> <span class="token punctuation">(</span><span class="token string">'C:\app\Administrator\oradata\chwit0\stredo04.log'</span><span class="token punctuation">)</span> size <span class="token number">50</span>M<span class="token punctuation">;</span>
+<span class="token keyword">alter</span> <span class="token keyword">database</span> <span class="token keyword">add</span> standby logfile <span class="token keyword">group</span> <span class="token number">5</span> <span class="token punctuation">(</span><span class="token string">'C:\app\Administrator\oradata\chwit0\stredo05.log'</span><span class="token punctuation">)</span> size <span class="token number">50</span>M<span class="token punctuation">;</span>
+<span class="token keyword">alter</span> <span class="token keyword">database</span> <span class="token keyword">add</span> standby logfile <span class="token keyword">group</span> <span class="token number">6</span> <span class="token punctuation">(</span><span class="token string">'C:\app\Administrator\oradata\chwit0\stredo06.log'</span><span class="token punctuation">)</span> size <span class="token number">50</span>M<span class="token punctuation">;</span>
+<span class="token keyword">alter</span> <span class="token keyword">database</span> <span class="token keyword">add</span> standby logfile <span class="token keyword">group</span> <span class="token number">7</span> <span class="token punctuation">(</span><span class="token string">'C:\app\Administrator\oradata\chwit0\stredo07.log'</span><span class="token punctuation">)</span> size <span class="token number">50</span>M<span class="token punctuation">;</span>
+</code></pre></div><ul><li>主库静态监听配置</li></ul> <blockquote><p>/data/oracle/product/11.2.0/db_1/network/admin/listener.ora</p></blockquote> <div class="language-sql extra-class"><pre class="language-sql"><code>
+LISTENER <span class="token operator">=</span>
+<span class="token punctuation">(</span>DESCRIPTION_LIST <span class="token operator">=</span>
+<span class="token punctuation">(</span>DESCRIPTION <span class="token operator">=</span>
+<span class="token punctuation">(</span>ADDRESS_LIST <span class="token operator">=</span> 
+  <span class="token punctuation">(</span>ADDRESS <span class="token operator">=</span> <span class="token punctuation">(</span>PROTOCOL <span class="token operator">=</span> TCP<span class="token punctuation">)</span><span class="token punctuation">(</span>HOST <span class="token operator">=</span> primarynode<span class="token punctuation">)</span><span class="token punctuation">(</span>PORT <span class="token operator">=</span> <span class="token number">1521</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span>
+<span class="token punctuation">)</span>
+<span class="token punctuation">)</span>
+
+SID_LIST_LISTENER <span class="token operator">=</span> 
+<span class="token punctuation">(</span>SID_LIST <span class="token operator">=</span> 
+<span class="token punctuation">(</span>SID_DESC <span class="token operator">=</span> 
+<span class="token punctuation">(</span>GLOBAL_DBNAME<span class="token operator">=</span>chwit0<span class="token punctuation">)</span>
+<span class="token punctuation">(</span>SID_NAME <span class="token operator">=</span> chwit0<span class="token punctuation">)</span>
+<span class="token punctuation">(</span>ORACLE_HOME <span class="token operator">=</span> <span class="token operator">/</span>u01<span class="token operator">/</span>app<span class="token operator">/</span>oracle<span class="token operator">/</span>product<span class="token operator">/</span><span class="token number">11.2</span><span class="token number">.0</span><span class="token operator">/</span>db_1<span class="token punctuation">)</span>       
+<span class="token punctuation">)</span> 
+<span class="token punctuation">)</span> 
+
+ADR_BASE_LISTENER <span class="token operator">=</span> <span class="token operator">/</span>u01<span class="token operator">/</span>oracle
+</code></pre></div><ul><li>主库tnsnames.ora文件配置</li></ul> <blockquote><p>/data/oracle/product/11.2.0/db_1/network/admin/tnsnames.ora</p></blockquote> <div class="language-sql extra-class"><pre class="language-sql"><code>tnschwit0 <span class="token operator">=</span>
+<span class="token punctuation">(</span>DESCRIPTION <span class="token operator">=</span>
+ <span class="token punctuation">(</span>ADDRESS_LIST <span class="token operator">=</span>
+   <span class="token punctuation">(</span>ADDRESS <span class="token operator">=</span> <span class="token punctuation">(</span>PROTOCOL <span class="token operator">=</span> TCP<span class="token punctuation">)</span><span class="token punctuation">(</span>HOST <span class="token operator">=</span> <span class="token number">192.168</span><span class="token number">.186</span><span class="token number">.132</span><span class="token punctuation">)</span><span class="token punctuation">(</span>PORT <span class="token operator">=</span> <span class="token number">1521</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+ <span class="token punctuation">)</span>
+ <span class="token punctuation">(</span>CONNECT_DATA <span class="token operator">=</span>
+   <span class="token punctuation">(</span>SERVICE_NAME <span class="token operator">=</span> chwit0<span class="token punctuation">)</span>
+ <span class="token punctuation">)</span>
+<span class="token punctuation">)</span>
+
+tnschwit1 <span class="token operator">=</span>
+<span class="token punctuation">(</span>DESCRIPTION <span class="token operator">=</span>
+ <span class="token punctuation">(</span>ADDRESS_LIST <span class="token operator">=</span>
+   <span class="token punctuation">(</span>ADDRESS <span class="token operator">=</span> <span class="token punctuation">(</span>PROTOCOL <span class="token operator">=</span> TCP<span class="token punctuation">)</span><span class="token punctuation">(</span>HOST <span class="token operator">=</span> <span class="token number">192.168</span><span class="token number">.186</span><span class="token number">.131</span><span class="token punctuation">)</span><span class="token punctuation">(</span>PORT <span class="token operator">=</span> <span class="token number">1521</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+ <span class="token punctuation">)</span>
+ <span class="token punctuation">(</span>CONNECT_DATA <span class="token operator">=</span>
+   <span class="token punctuation">(</span>SERVICE_NAME <span class="token operator">=</span> chwit0<span class="token punctuation">)</span>
+ <span class="token punctuation">)</span>
+<span class="token punctuation">)</span>
+</code></pre></div><h3 id="备库配置"><a href="#备库配置" class="header-anchor">#</a> 备库配置</h3> <ul><li>设置一个密码文件</li></ul> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token comment"># 指定standby database的ORACLE_SID</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">ORACLE_SID</span><span class="token operator">=</span>stddb
+<span class="token comment"># 跳转到dbs文件夹下</span>
+<span class="token builtin class-name">cd</span> <span class="token variable">$ORACLE_HOME</span>/dbs
+<span class="token comment"># 创建密码文件</span>
+orapwd <span class="token assign-left variable">file</span><span class="token operator">=</span>orapwchwit1 <span class="token assign-left variable">password</span><span class="token operator">=</span>sys123
+</code></pre></div><ul><li>初始化参数文件</li></ul> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token comment">--在主库生成初始化参数文件</span>
+<span class="token keyword">SQL</span><span class="token operator">&gt;</span> <span class="token keyword">create</span> pfile <span class="token keyword">from</span> spfile<span class="token punctuation">;</span>
+</code></pre></div><blockquote><p>复制主库的参数文件到备库并重命名后修改备库的参数文件内容</p></blockquote> <div class="language-sql extra-class"><pre class="language-sql"><code>
+chwit0<span class="token punctuation">.</span>__java_pool_size<span class="token operator">=</span><span class="token number">4194304</span>
+chwit0<span class="token punctuation">.</span>__large_pool_size<span class="token operator">=</span><span class="token number">4194304</span>
+chwit0<span class="token punctuation">.</span>__oracle_base<span class="token operator">=</span><span class="token string">'/data/oracle'</span><span class="token comment">#ORACLE_BASE set from environment</span>
+chwit0<span class="token punctuation">.</span>__pga_aggregate_target<span class="token operator">=</span><span class="token number">343932928</span>
+chwit0<span class="token punctuation">.</span>__sga_target<span class="token operator">=</span><span class="token number">515899392</span>
+chwit0<span class="token punctuation">.</span>__shared_io_pool_size<span class="token operator">=</span><span class="token number">0</span>
+chwit0<span class="token punctuation">.</span>__shared_pool_size<span class="token operator">=</span><span class="token number">192937984</span>
+chwit0<span class="token punctuation">.</span>__streams_pool_size<span class="token operator">=</span><span class="token number">0</span>
+<span class="token operator">*</span><span class="token punctuation">.</span>audit_file_dest<span class="token operator">=</span><span class="token string">'/data/oracle/admin/chwit1/adump'</span>
+<span class="token operator">*</span><span class="token punctuation">.</span>audit_trail<span class="token operator">=</span><span class="token string">'db'</span>
+<span class="token operator">*</span><span class="token punctuation">.</span>compatible<span class="token operator">=</span><span class="token string">'11.2.0.0.0'</span>
+<span class="token operator">*</span><span class="token punctuation">.</span>control_files<span class="token operator">=</span><span class="token string">'/data/oracle/oradata/chwit1/control01.ctl'</span><span class="token punctuation">,</span><span class="token string">'/data/oracle/flash_recovery_area/chwit1/control02.ctl'</span>
+<span class="token operator">*</span><span class="token punctuation">.</span>db_block_size<span class="token operator">=</span><span class="token number">8192</span>
+<span class="token operator">*</span><span class="token punctuation">.</span>db_domain<span class="token operator">=</span><span class="token string">''</span>
+<span class="token operator">*</span><span class="token punctuation">.</span>db_name<span class="token operator">=</span><span class="token string">'chwit0'</span>
+<span class="token operator">*</span><span class="token punctuation">.</span>db_recovery_file_dest<span class="token operator">=</span><span class="token string">'/data/oracle/flash_recovery_area'</span>
+<span class="token operator">*</span><span class="token punctuation">.</span>db_recovery_file_dest_size<span class="token operator">=</span><span class="token number">4102029312</span>
+<span class="token operator">*</span><span class="token punctuation">.</span>diagnostic_dest<span class="token operator">=</span><span class="token string">'/data/oracle'</span>
+<span class="token operator">*</span><span class="token punctuation">.</span>dispatchers<span class="token operator">=</span><span class="token string">'(PROTOCOL=TCP) (SERVICE=chwit0XDB)'</span>
+<span class="token operator">*</span><span class="token punctuation">.</span>local_listener<span class="token operator">=</span><span class="token string">'LISTENER_SFXT'</span>
+<span class="token operator">*</span><span class="token punctuation">.</span>memory_target<span class="token operator">=</span><span class="token number">858783744</span>
+<span class="token operator">*</span><span class="token punctuation">.</span>open_cursors<span class="token operator">=</span><span class="token number">300</span>
+<span class="token operator">*</span><span class="token punctuation">.</span>processes<span class="token operator">=</span><span class="token number">150</span>
+<span class="token operator">*</span><span class="token punctuation">.</span>remote_login_passwordfile<span class="token operator">=</span><span class="token string">'EXCLUSIVE'</span>
+<span class="token operator">*</span><span class="token punctuation">.</span>undo_tablespace<span class="token operator">=</span><span class="token string">'UNDOTBS1'</span>
+db_unique_name<span class="token operator">=</span>chwit1
+log_archive_config<span class="token operator">=</span><span class="token string">'dg_config=(chwit0,chwit1)'</span>
+log_archive_dest_1<span class="token operator">=</span><span class="token string">''</span>LOCATION<span class="token operator">=</span><span class="token operator">/</span><span class="token keyword">data</span><span class="token operator">/</span>oracle<span class="token operator">/</span>product<span class="token operator">/</span><span class="token number">11.2</span><span class="token number">.0</span><span class="token operator">/</span>db_1<span class="token operator">/</span>archivelog VALID_FOR<span class="token operator">=</span><span class="token punctuation">(</span>ALL_LOGFILES<span class="token punctuation">,</span>ALL_ROLES<span class="token punctuation">)</span> DB_UNIQUE_NAME<span class="token operator">=</span>chwit1<span class="token string">'
+log_archive_dest_2='</span>SERVICE<span class="token operator">=</span>tnschwit0 LGWR SYNC AFFIRM VALID_FOR<span class="token operator">=</span><span class="token punctuation">(</span>ONLINE_LOGFILES<span class="token punctuation">,</span>PRIMARY_ROLE<span class="token punctuation">)</span> DB_UNIQUE_NAME<span class="token operator">=</span>chwit0<span class="token string">'
+log_archive_dest_state_1=enable
+log_archive_dest_state_2=enable
+db_file_name_convert='</span>C:\APP\ADMINISTRATOR\ORADATA\SFXT<span class="token string">','</span><span class="token operator">/</span><span class="token keyword">data</span><span class="token operator">/</span>oracle<span class="token operator">/</span>oradata<span class="token operator">/</span>chwit1<span class="token string">'
+log_file_name_convert='</span>C:\APP\ADMINISTRATOR\ORADATA\SFXT<span class="token string">','</span><span class="token operator">/</span><span class="token keyword">data</span><span class="token operator">/</span>oracle<span class="token operator">/</span>oradata<span class="token operator">/</span>chwit1<span class="token string">'
+fal_client='</span>tnschwit1<span class="token string">'
+fal_server='</span>tnschwit0<span class="token string">'
+standby_file_management='</span>AUTO'
+</code></pre></div><ul><li>新建需要的目录</li></ul> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token function">mkdir</span> <span class="token parameter variable">-p</span> /data/oracle/admin/chwit1/adump
+<span class="token function">mkdir</span> <span class="token parameter variable">-p</span> /data/oracle/oradata/chwit1
+<span class="token function">mkdir</span> <span class="token parameter variable">-p</span>  /data/oracle/flash_recovery_area/chwit1
+</code></pre></div><ul><li>复制控制文件过来</li></ul> <blockquote><p>注意控制文件一般有两个</p></blockquote> <div class="language-sql extra-class"><pre class="language-sql"><code>cp C:\app\Administrator\oradata\chwit0\CONTROL01<span class="token punctuation">.</span>CTL
+cp C:\app\Administrator\flash_recovery_area\chwit0\CONTROL02<span class="token punctuation">.</span>CTL
+</code></pre></div><ul><li>使用pfile文件创建spfile文件</li></ul> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token comment">--登陆到idle数据库</span>
+sqlplus <span class="token operator">/</span> <span class="token keyword">as</span> sysdba
+<span class="token comment">--创建spfile</span>
+<span class="token keyword">create</span> spfile <span class="token keyword">from</span> pfile
+<span class="token comment">--启动数据库到nomount状态</span>
+startup nomount
+</code></pre></div><ul><li>配置静态监听</li></ul> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token punctuation">[</span>oracle@standbynode admin<span class="token punctuation">]</span>$ <span class="token function">vim</span> listener.ora
+</code></pre></div><div class="language-shell extra-class"><pre class="language-shell"><code><span class="token comment"># listener.ora Network Configuration File: /data/oracle/product/11.2.0/db_1/network/admin/listener.ora</span>
+<span class="token comment"># Generated by Oracle configuration tools.</span>
+
+LISTENER <span class="token operator">=</span>
+<span class="token punctuation">(</span>DESCRIPTION_LIST <span class="token operator">=</span>
+<span class="token punctuation">(</span>DESCRIPTION <span class="token operator">=</span>
+<span class="token punctuation">(</span>ADDRESS_LIST <span class="token operator">=</span> 
+  <span class="token punctuation">(</span>ADDRESS <span class="token operator">=</span> <span class="token punctuation">(</span>PROTOCOL <span class="token operator">=</span> TCP<span class="token punctuation">)</span><span class="token punctuation">(</span>HOST <span class="token operator">=</span> standbynode<span class="token punctuation">)</span><span class="token punctuation">(</span>PORT <span class="token operator">=</span> <span class="token number">1521</span><span class="token punctuation">))</span>
+<span class="token punctuation">)</span>
+<span class="token punctuation">)</span>
+<span class="token punctuation">)</span>
+
+SID_LIST_LISTENER <span class="token operator">=</span> 
+<span class="token punctuation">(</span>SID_LIST <span class="token operator">=</span> 
+<span class="token punctuation">(</span>SID_DESC <span class="token operator">=</span> 
+<span class="token punctuation">(</span>GLOBAL_DBNAME<span class="token operator">=</span>chwit0<span class="token punctuation">)</span>
+<span class="token punctuation">(</span>SID_NAME <span class="token operator">=</span> chwit1<span class="token punctuation">)</span>
+<span class="token punctuation">(</span>ORACLE_HOME <span class="token operator">=</span> /u01/app/oracle/product/11.2.0/db_1<span class="token punctuation">)</span>       
+<span class="token punctuation">)</span> 
+<span class="token punctuation">)</span> 
+
+ADR_BASE_LISTENER <span class="token operator">=</span> /data/oracle
+</code></pre></div><ul><li><p>配置tnsnames.ora文件,直接复制主库的</p></li> <li><p>测试网络连通性</p></li></ul> <blockquote><p>主库与备库都测试执行确认可以正常访问</p></blockquote> <div class="language-shell extra-class"><pre class="language-shell"><code>tnsping tnschwit0
+tnsping tnschwit1
+</code></pre></div><ul><li>在主库测试连接备库</li></ul> <div class="language-sql extra-class"><pre class="language-sql"><code>sqlplus sys<span class="token operator">/</span>sys123<span class="token variable">@tnschwit0</span> <span class="token keyword">as</span> sysdba
+sqlplus sys<span class="token operator">/</span>sys123<span class="token variable">@tnschwit1</span> <span class="token keyword">as</span> sysdba
+</code></pre></div><h3 id="参数检查"><a href="#参数检查" class="header-anchor">#</a> 参数检查</h3> <table><thead><tr><th>参数</th> <th>说明</th></tr></thead> <tbody><tr><td>db_unique_name</td> <td>2个节点需要不一样</td></tr> <tr><td>compatible</td> <td>主库与备库兼容性需一致</td></tr> <tr><td>log_archive_config</td> <td>配置主库与备库的db_unique_name</td></tr> <tr><td>log_archive_dest_1</td> <td>归档日志的路径</td></tr> <tr><td>log_archive_dest_2</td> <td>归档日志的路径</td></tr> <tr><td>log_archive_dest_state_2</td> <td>enable：启用,defer:禁用</td></tr> <tr><td>db_file_name_convert</td> <td>数据文件转换路径</td></tr> <tr><td>log_file_name_convert</td> <td>日志文件转换路径</td></tr> <tr><td>standby_file_management</td> <td>设置为auto</td></tr> <tr><td>log_archive_format</td> <td>日志文件格式，两边需一致</td></tr></tbody></table> <h3 id="使用duplicate创建物理standby"><a href="#使用duplicate创建物理standby" class="header-anchor">#</a> 使用duplicate创建物理standby</h3> <ul><li>备库端执行</li></ul> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token comment">#： 一定要加nocatalog，否则在执行duplicate时会报错</span>
+<span class="token punctuation">[</span>oracle@primarynode ~<span class="token punctuation">]</span>$ rman target sys/sys123@chwit0 auxiliary sys/sys123@chwit1 nocatalog
+</code></pre></div><ul><li>使用duplicate复制数据库</li></ul> <div class="language-sql extra-class"><pre class="language-sql"><code>RMAN<span class="token operator">&gt;</span> <span class="token keyword">duplicate</span> target <span class="token keyword">database</span> <span class="token keyword">for</span> standby <span class="token keyword">from</span> active <span class="token keyword">database</span> nofilenamecheck<span class="token punctuation">;</span>
+<span class="token comment">-- 开始同步数据库(备库执行)</span>
+<span class="token keyword">alter</span> <span class="token keyword">database</span> <span class="token keyword">open</span><span class="token punctuation">;</span>  
+<span class="token comment">--开启实时同步</span>
+<span class="token keyword">alter</span> <span class="token keyword">database</span> recover managed standby <span class="token keyword">database</span> <span class="token keyword">using</span> <span class="token keyword">current</span> logfile disconnect <span class="token keyword">from</span> <span class="token keyword">session</span><span class="token punctuation">;</span>
+<span class="token comment">--方式二：开启同步（日志切换时才同步）</span>
+<span class="token keyword">alter</span> <span class="token keyword">database</span> recover managed standby <span class="token keyword">database</span> disconnect <span class="token keyword">from</span> <span class="token keyword">session</span><span class="token punctuation">;</span>
+</code></pre></div><h3 id="检查是否执行成功"><a href="#检查是否执行成功" class="header-anchor">#</a> 检查是否执行成功</h3> <ul><li>主库状态查看</li></ul> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token keyword">select</span>    open_mode<span class="token punctuation">,</span>      <span class="token comment">--数据库打开模式，如果实时同步，则为：read only with apply，取消同步则为：read only</span>
+          database_role<span class="token punctuation">,</span>       <span class="token comment">--数据库角色，是主库还是备库</span>
+          protection_mode<span class="token punctuation">,</span>     <span class="token comment">--保护模式</span>
+          protection_level     <span class="token comment">--保护级别</span>
+<span class="token keyword">from</span>  v$<span class="token keyword">database</span><span class="token punctuation">;</span>  
+</code></pre></div><h4 id="主库"><a href="#主库" class="header-anchor">#</a> 主库</h4> <table><thead><tr><th>OPEN_MODE</th> <th>DATABASE_ROLE</th> <th>PROTECTION_MODE</th> <th>PROTECTION_LEVEL</th></tr></thead> <tbody><tr><td>READ WRITE</td> <td>PRIMARY</td> <td>MAXIMUM PERFORMANCE</td> <td>MAXIMUM PERFORMANCE</td></tr></tbody></table> <h4 id="备库"><a href="#备库" class="header-anchor">#</a> 备库</h4> <table><thead><tr><th>OPEN_MODE</th> <th>DATABASE_ROLE</th> <th>PROTECTION_MODE</th> <th>PROTECTION_LEVEL</th></tr></thead> <tbody><tr><td>READ ONLY WITH APPLY</td> <td>PHYSICAL STANDBY</td> <td>MAXIMUM PERFORMANCE</td> <td>MAXIMUM PERFORMANCE</td></tr></tbody></table></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/database/dbase-9.html" class="prev">
+        Oracle中exp,imp的使用详解
+      </a></span> <span class="next"><a href="/database/dbase-11.html">
+        Oracle中创建unique唯一约束(单列和多列)
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.a4b0c6e4.js" defer></script><script src="/assets/js/2.6161d12c.js" defer></script><script src="/assets/js/1.2d3f8e6c.js" defer></script><script src="/assets/js/37.f1970d74.js" defer></script>
+  </body>
+</html>
