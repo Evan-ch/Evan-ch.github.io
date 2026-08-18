@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>企微CLI能力再升级：不限企业规模，十大办公能力全开放 | Evan’s Blog</title>
+    <meta name="generator" content="Handcrafted HTML (style referenced from wecom-cli.html)">
+    <meta name="description" content="企业微信 CLI 开源项目能力更新：不限企业规模，十大办公能力全开放。">
+    <style>
+      :root{
+        --c-text:#2c3e50;
+        --c-text-light:#4e6e8e;
+        --c-border:#eaecef;
+        --c-border-dark:#dfe2e5;
+        --c-bg:#ffffff;
+        --c-brand:#3eaf7c;
+        --c-brand-light:#4abf8a;
+        --c-code-bg:#282c34;
+        --c-code-text:#fff;
+        --content-width:740px;
+        --navbar-height:3.6rem;
+        --sidebar-width:16.4rem;
+      }
+      *{box-sizing:border-box;}
+      html,body{margin:0;padding:0;}
+      body{
+        font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Fira Sans","Droid Sans","Helvetica Neue",sans-serif;
+        color:var(--c-text);
+        background:var(--c-bg);
+        line-height:1.7;
+        font-size:16px;
+      }
+      a{color:var(--c-brand);text-decoration:none;font-weight:500;}
+      a:hover{text-decoration:underline;}
+
+      /* Navbar */
+      .navbar{
+        position:fixed;top:0;left:0;right:0;z-index:30;
+        height:var(--navbar-height);
+        display:flex;align-items:center;
+        padding:0.7rem 1.5rem;
+        background:var(--c-bg);
+        border-bottom:1px solid var(--c-border);
+      }
+      .navbar .home-link{display:flex;align-items:center;gap:.5rem;}
+      .navbar .logo{height:2.2rem;vertical-align:middle;}
+      .navbar .site-name{font-size:1.3rem;font-weight:600;color:var(--c-text);}
+      .navbar .links{margin-left:auto;display:flex;align-items:center;gap:1.1rem;}
+      .navbar .nav-links{display:flex;align-items:center;gap:1.1rem;list-style:none;margin:0;padding:0;}
+      .navbar .nav-item{position:relative;}
+      .navbar .nav-link{color:var(--c-text);font-weight:500;}
+      .navbar .nav-link:hover{color:var(--c-brand);text-decoration:none;}
+      .navbar .dropdown-wrapper .dropdown-title{
+        background:none;border:0;cursor:pointer;font:inherit;color:var(--c-text);
+        display:flex;align-items:center;gap:.3rem;font-weight:500;
+      }
+      .navbar .dropdown-wrapper .arrow{display:inline-block;width:0;height:0;
+        border-left:4px solid transparent;border-right:4px solid transparent;border-top:6px solid #ccc;}
+      .navbar .nav-dropdown{
+        position:absolute;top:100%;right:0;background:#fff;border:1px solid var(--c-border);
+        border-radius:6px;padding:.5rem 0;min-width:11rem;box-shadow:0 2px 8px rgba(0,0,0,.08);display:none;
+      }
+      .navbar .nav-dropdown .dropdown-item{list-style:none;}
+      .navbar .nav-dropdown .nav-link{display:block;padding:.35rem .9rem;white-space:nowrap;}
+      .navbar .nav-dropdown .dropdown-item:hover{background:#f6f8fa;}
+
+      /* Layout */
+      .theme-container{display:flex;padding-top:var(--navbar-height);}
+      .sidebar{
+        position:fixed;top:var(--navbar-height);left:0;bottom:0;
+        width:var(--sidebar-width);
+        border-right:1px solid var(--c-border);
+        overflow-y:auto;padding:1.5rem 0;
+        background:var(--c-bg);
+      }
+      .sidebar .sidebar-links{list-style:none;margin:0;padding:0 1rem;}
+      .sidebar .sidebar-heading{
+        font-size:1.1rem;font-weight:700;margin:0;padding:.4rem .8rem;color:var(--c-text);
+        display:flex;align-items:center;justify-content:space-between;
+      }
+      .sidebar .sidebar-links .sidebar-group-items{list-style:none;margin:0;padding:0;padding-left:.4rem;}
+      .sidebar .sidebar-links .sidebar-group-items .sidebar-link{
+        display:block;padding:.3rem .8rem;color:var(--c-text-light);font-size:.95rem;border-left:2px solid transparent;
+      }
+      .sidebar .sidebar-links .sidebar-link.active,.sidebar .sidebar-links .sidebar-link:hover{
+        color:var(--c-brand);border-left-color:var(--c-brand);text-decoration:none;
+      }
+
+      /* Content */
+      .page{
+        margin-left:var(--sidebar-width);
+        padding:2.5rem 2.5rem 4rem;
+        width:100%;
+        max-width:calc(var(--content-width) + var(--sidebar-width) + 2rem);
+      }
+      .theme-default-content{max-width:var(--content-width);margin:0 auto;}
+      .theme-default-content h1{font-size:2rem;margin-top:0;margin-bottom:1rem;line-height:1.3;}
+      .theme-default-content h2{font-size:1.55rem;margin-top:2.4rem;margin-bottom:.9rem;border-top:1px solid var(--c-border);padding-top:1.6rem;}
+      .theme-default-content h3{font-size:1.25rem;margin-top:1.8rem;margin-bottom:.6rem;}
+      .theme-default-content p{margin:1rem 0;}
+      .header-anchor{float:left;margin-left:-.95rem;padding-right:.3rem;color:#ccc;opacity:0;font-weight:400;}
+      .theme-default-content h1:hover .header-anchor,
+      .theme-default-content h2:hover .header-anchor,
+      .theme-default-content h3:hover .header-anchor{opacity:1;}
+
+      /* Note callout */
+      .note{background:#f3f9f6;border-left:4px solid var(--c-brand);padding:.7rem 1rem;border-radius:0 6px 6px 0;color:#3a4a42;margin:1.2rem 0;}
+
+      /* Table */
+      .theme-default-content table{
+        border-collapse:collapse;width:100%;margin:1.4rem 0;display:block;overflow-x:auto;
+      }
+      .theme-default-content th,.theme-default-content td{
+        border:1px solid var(--c-border-dark);padding:.6rem .9rem;text-align:left;vertical-align:top;
+      }
+      .theme-default-content th{background:#f6f8fa;font-weight:600;}
+      .theme-default-content tbody tr:nth-child(2n){background:#fafbfc;}
+
+      /* Images */
+      .theme-default-content img{max-width:100%;border-radius:6px;margin:1rem 0;box-shadow:0 1px 6px rgba(0,0,0,.08);}
+
+      /* Code block */
+      .language-shell{
+        background:var(--c-code-bg);color:var(--c-code-text);border-radius:6px;
+        padding:1.1rem 1.2rem;overflow-x:auto;font-size:.9rem;line-height:1.6;margin:1.2rem 0;
+      }
+      .language-shell code{font-family:Source Code Pro,Menlo,Monaco,Consolas,"Courier New",monospace;color:#fff;}
+      .language-shell .token.function{color:#61afef;}
+      .language-shell .token.parameter{color:#d19a66;}
+      .language-shell .token.string{color:#98c379;}
+      .language-shell .token.comment{color:#7f848e;font-style:italic;}
+
+      /* Outbound icon */
+      .outbound{width:13px;height:13px;vertical-align:-1px;margin-left:2px;}
+
+      /* Responsive */
+      @media (max-width:959px){
+        .sidebar{display:none;}
+        .page{margin-left:0;padding:1.5rem 1.2rem 3rem;}
+        .navbar .links .nav-dropdown{position:static;border:0;box-shadow:none;}
+      }
+    </style>
+  </head>
+  <body>
+    <div class="theme-container">
+      <!-- Navbar -->
+      <header class="navbar">
+        <a href="/" class="home-link">
+          <img src="/logo.png" alt="Evan’s Blog" class="logo" onerror="this.style.display='none'">
+          <span class="site-name">Evan’s Blog</span>
+        </a>
+        <div class="links">
+          <nav class="nav-links">
+            <div class="nav-item"><a href="/evan/" class="nav-link">关于我</a></div>
+            <div class="nav-item">
+              <div class="dropdown-wrapper">
+                <button type="button" class="dropdown-title" onclick="this.parentElement.querySelector('.nav-dropdown').style.display = (this.parentElement.querySelector('.nav-dropdown').style.display==='block'?'none':'block')">
+                  <span class="title">数据治理</span> <span class="arrow"></span>
+                </button>
+                <ul class="nav-dropdown">
+                  <li class="dropdown-item"><a href="/damadata/" class="nav-link">DAMA数据治理学习笔记</a></li>
+                  <li class="dropdown-item"><a href="/damadata/#damadata" class="nav-link">数字化转型场景案例系列</a></li>
+                  <li class="dropdown-item"><a href="/damadata/#damadata" class="nav-link">成文数据集成平台落地场景系列</a></li>
+                  <li class="dropdown-item"><a href="/damadata/#damadata" class="nav-link">成文数字化解决方案</a></li>
+                  <li class="dropdown-item"><a href="/damadata/#damadata" class="nav-link">其他</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="nav-item">
+              <div class="dropdown-wrapper">
+                <button type="button" class="dropdown-title" onclick="this.parentElement.querySelector('.nav-dropdown').style.display = (this.parentElement.querySelector('.nav-dropdown').style.display==='block'?'none':'block')">
+                  <span class="title">BLOG</span> <span class="arrow"></span>
+                </button>
+                <ul class="nav-dropdown">
+                  <li class="dropdown-item"><a href="/ai/" class="nav-link">AI</a></li>
+                  <li class="dropdown-item"><a href="/data/" class="nav-link">大数据</a></li>
+                  <li class="dropdown-item"><a href="/database/" class="nav-link">数据库</a></li>
+                  <li class="dropdown-item"><a href="/wx/" class="nav-link">微信开发</a></li>
+                  <li class="dropdown-item"><a href="/kingdee/" class="nav-link">金蝶</a></li>
+                  <li class="dropdown-item"><a href="/yonyou/" class="nav-link">用友</a></li>
+                  <li class="dropdown-item"><a href="/tool/" class="nav-link">工具集</a></li>
+                  <li class="dropdown-item"><a href="/linux/" class="nav-link">Linux</a></li>
+                  <li class="dropdown-item"><a href="/py/" class="nav-link">Python</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="nav-item">
+              <div class="dropdown-wrapper">
+                <button type="button" class="dropdown-title" onclick="this.parentElement.querySelector('.nav-dropdown').style.display = (this.parentElement.querySelector('.nav-dropdown').style.display==='block'?'none':'block')">
+                  <span class="title">官网</span> <span class="arrow"></span>
+                </button>
+                <ul class="nav-dropdown">
+                  <li class="dropdown-item"><a href="https://www.chengwenit.com" target="_blank" rel="noopener noreferrer" class="nav-link external">公司官网</a></li>
+                  <li class="dropdown-item"><a href="https://ji.chengwenit.com" target="_blank" rel="noopener noreferrer" class="nav-link external">数据集成平台</a></li>
+                  <li class="dropdown-item"><a href="https://pms.chengwenit.com" target="_blank" rel="noopener noreferrer" class="nav-link external">物业服务云</a></li>
+                  <li class="dropdown-item"><a href="https://cloud.chengwenit.com" target="_blank" rel="noopener noreferrer" class="nav-link external">云业务</a></li>
+                  <li class="dropdown-item"><a href="https://yao.chengwenit.com" target="_blank" rel="noopener noreferrer" class="nav-link external">医药大数据</a></li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </header>
+
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <ul class="sidebar-links">
+          <li>
+            <section class="sidebar-group">
+              <p class="sidebar-heading"><span>企业微信 CLI</span></p>
+              <ul class="sidebar-links sidebar-group-items">
+                <li><a href="#企微cli能力再升级" class="sidebar-link active" data-target="top">企微CLI能力再升级</a></li>
+                <li><a href="#_1-企业微信-cli开源项目能力更新" class="sidebar-link">1.企业微信 CLI开源项目能力更新</a></li>
+                <li><a href="#_2-cli可使用的能力" class="sidebar-link">2.CLI可使用的能力</a></li>
+                <li><a href="#_3-安装-skill" class="sidebar-link">3.安装 Skill</a></li>
+                <li><a href="#_4-其他指引" class="sidebar-link">4.其他指引</a></li>
+              </ul>
+            </section>
+          </li>
+        </ul>
+      </aside>
+
+      <!-- Main content -->
+      <main class="page">
+        <div class="theme-default-content content__default">
+          <h1 id="企微cli能力再升级"><a href="#企微cli能力再升级" class="header-anchor">#</a> 企微CLI能力再升级：不限企业规模，十大办公能力全开放</h1>
+
+          <h2 id="_1-企业微信-cli开源项目能力更新"><a href="#_1-企业微信-cli开源项目能力更新" class="header-anchor">#</a> 1.企业微信 CLI开源项目能力更新</h2>
+          <p>企业微信官方 CLI 工具，覆盖消息、邮件、文档、待办、日程、会议、微盘、通讯录等业务功能。本次更新支持机器人主动通知、新建与读取文档、文档搜索、新建与管理日程、预约与获取会议信息、新建与跟进待办、上传与获取微盘文件、发送与获取邮件、获取通讯录成员信息等能力，以提升企业办公效率。</p>
+          <div class="note">注：本次更新面向全量企业开放。</div>
+
+          <h2 id="_2-cli可使用的能力"><a href="#_2-cli可使用的能力" class="header-anchor">#</a> 2.CLI可使用的能力</h2>
+          <table>
+            <thead>
+              <tr><th>品类</th><th>能力</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>💬 消息</td><td>向机器人最近对话过的单聊/群聊主动推送消息，支持 Markdown/图片/文件/语音/视频消息</td></tr>
+              <tr><td>📧 邮件</td><td>邮件发送/回复/转发，邮件搜索，获取邮件内容详情</td></tr>
+              <tr><td>📄 文档</td><td>在线文档的新建、导入、读取、追加与覆盖写入</td></tr>
+              <tr><td>📁 文档管理</td><td>多种文档类型的搜索，在线文档/在线表格/智能表格/智能文档的重命名、成员权限与加入规则管理</td></tr>
+              <tr><td>📊 在线表格</td><td>在线表格新建、CSV/Excel 导入、内容读改、追加行、子表管理</td></tr>
+              <tr><td>📋 智能表格</td><td>智能表格创建，子表/字段/记录/视图/图表管理，行列样式修改</td></tr>
+              <tr><td>📑 智能文档</td><td>智能文档创建、获取页面内容、编辑文档内容、内置数据表信息获取</td></tr>
+              <tr><td>✅ 待办</td><td>创建/读取/更新/删除待办，分派参与人与完成待办等</td></tr>
+              <tr><td>📅 日程</td><td>日程增删改查、参与人管理、多成员闲忙查询、会议室查询预订等</td></tr>
+              <tr><td>🎥 会议</td><td>创建预约会议、取消会议、更新参会人、查询列表与详情、读取会议纪要与转写原文</td></tr>
+              <tr><td>💾 微盘</td><td>微盘文件的搜索、基础信息读取、上传、下载</td></tr>
+              <tr><td>👤 通讯录</td><td>按姓名/拼音/别名搜索成员，获取成员基本信息，以用于会议、日程等多人场景</td></tr>
+            </tbody>
+          </table>
+          <p>github地址：<a href="https://github.com/WecomTeam/wecom-unified" target="_blank" rel="noopener noreferrer">GitHub - WecomTeam/wecom-unified：企业微信CLI全能套件，覆盖通讯录、消息、文档、智能表格、日程、会议、待办7大业务域<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p>
+
+          <h2 id="_3-安装-skill"><a href="#_3-安装-skill" class="header-anchor">#</a> 3.安装 Skill</h2>
+          <div class="language-shell"><code>支持 WorkBuddy、CodeBuddy、MiniMax Code、Kimi Work、Codex、Cursor 等平台，一行命令自动检测已安装的平台并完成安装：</code></div>
+
+          <h2 id="_4-其他指引"><a href="#_4-其他指引" class="header-anchor">#</a> 4.其他指引</h2>
+          <p><img src="./qywxcli202608.png" alt="企微CLI能力再升级指引"></p>
+          <p>企业微信帮助中心：<a href="https://open.work.weixin.qq.com/help2/pc/21676" target="_blank" rel="noopener noreferrer">企业微信支持CLI开源 - 帮助中心 - 企业微信<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p>
+        </div>
+      </main>
+    </div>
+
+    <script>
+      // 滚动时高亮当前章节对应的侧栏链接
+      (function () {
+        var links = Array.prototype.slice.call(document.querySelectorAll('.sidebar .sidebar-link'));
+        var map = {};
+        links.forEach(function (l) {
+          var id = l.getAttribute('href').slice(1);
+          var el = document.getElementById(id);
+          if (el) map[id] = l;
+        });
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              links.forEach(function (l) { l.classList.remove('active'); });
+              var active = map[entry.target.id];
+              if (active) active.classList.add('active');
+            }
+          });
+        }, { rootMargin: '0px 0px -75% 0px', threshold: 0 });
+        Object.keys(map).forEach(function (id) {
+          observer.observe(document.getElementById(id));
+        });
+      })();
+    </script>
+  </body>
+</html>
